@@ -18,6 +18,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from catalog.views import abigail
+
 urlpatterns = [
     path("admin/", admin.site.urls),
+    path("abigail/", abigail)
 ]
