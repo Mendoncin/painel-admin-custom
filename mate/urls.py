@@ -22,5 +22,5 @@ from catalog.views import abigail
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("abigail/", abigail)
+    path("abigail/<int:unique_number>/", abigail)
 ]
