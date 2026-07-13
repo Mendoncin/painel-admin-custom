@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import datetime
-from .models import Book, Author
+from .models import Book, Author, LiteraryFormat
 
 def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
   now = datetime.datetime.now()
@@ -16,4 +16,10 @@ def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
 def index(request: HttpRequest) -> HttpResponse:
   num_books = Book.objects.count()
   num_author = Author.objects.count()
-  return render(request, "catalog/index.html")
+  num_literary = LiteraryFormat.objects.count()
+  context = {
+    "num_books": num_books,
+    "num_authors": num_author,
+    "num_lit": num_literary
+  }
+  return render(request, "catalog/index.html", context=context)
