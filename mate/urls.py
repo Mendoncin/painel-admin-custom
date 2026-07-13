@@ -16,11 +16,10 @@ Including another URLconf
 """
 
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 
-from catalog.views import abigail
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("abigail/<int:unique_number>/", abigail)
+    path("catalog/", include("catalog.urls", namespace="catalog")),
 ]

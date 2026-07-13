@@ -12,3 +12,7 @@ def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
                       "</html>"
                       f"<h4>Número = {unique_number}</h4>"
                       )
+
+
+def index(request: HttpRequest) -> HttpResponse:
+  return HttpResponse("<h1>HOME PAGE</h1>")
