@@ -13,20 +13,7 @@
       <div class="row">
         <div class="col-sm-3">
           {% block sidebar %}
-          <ul>
-            <li>
-              <a href="{% url 'catalog:index' %}">Home</a>
-            </li>
-            <li>
-              <a href="#">Todos autores</a>
-            </li>
-            <li>
-              <a href="#">Todos livros</a>
-            </li>
-            <li>
-              <a href="#">Todos generos</a>
-            </li>
-          </ul>
+            {% include "includes/sidebar.html" %}
           {% endblock %}
         </div>
         <div class="col-sm-9">
