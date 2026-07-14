@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% block title %}
+    <title>Livraria</title>
+    {% endblock %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-3">
+          {% block sidebar %}
+          <ul>
+            <li>
+              <a href="{% url 'catalog:index' %}">Home</a>
+            </li>
+            <li>
+              <a href="#">Todos autores</a>
+            </li>
+            <li>
+              <a href="#">Todos livros</a>
+            </li>
+            <li>
+              <a href="#">Todos generos</a>
+            </li>
+          </ul>
+          {% endblock %}
+        </div>
+        <div class="col-sm-9">
+          {% block content %}
+          <h1>HOME PAGE</h1>
+          <p>Seja bem vindo</p>
+          <h3>Nossa grande biblioteca</h3>
+          <ul>
+            <li>Número de Livros no catálogo: {{ num_books }}</li>
+            <li>Número de Autores no catálogo: {{num_authors}}</li>
+            <li>Número de formatos Literários: {{num_lit}}</li>
+          </ul>
+          {% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
