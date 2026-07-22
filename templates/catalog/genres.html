@@ -2,9 +2,13 @@
 
 {% block content %}
 <h1>Lista de gêneros</h1>
+{% if genres %}
 <ul>
   {% for genre in genres %}
   <li>{{genre.name}}</li>
   {% endfor %}
 </ul>
+{% else %}
+<p>Não há generos aqui</p>
+{% endif %}
 {% endblock %}
