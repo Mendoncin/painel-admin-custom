@@ -23,3 +23,9 @@ def index(request: HttpRequest) -> HttpResponse:
     "num_lit": num_literary
   }
   return render(request, "catalog/index.html", context=context)
+
+
+def list_genres(request: HttpRequest) -> HttpResponse:
+  genres = LiteraryFormat.objects.all()
+  context = {"genres": genres}
+  return render(request, "catalog/genres.html", context=context)
