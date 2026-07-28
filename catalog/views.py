@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import datetime
 from .models import Book, Author, LiteraryFormat
+from django.views import generic
+
 
 def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
   now = datetime.datetime.now()
@@ -25,7 +27,15 @@ def index(request: HttpRequest) -> HttpResponse:
   return render(request, "catalog/index.html", context=context)
 
 
-def list_genres(request: HttpRequest) -> HttpResponse:
-  genres = LiteraryFormat.objects.all()
-  context = {"genres": genres}
-  return render(request, "catalog/genres.html", context=context)
+class LiteraryFormatsListView(generic.ListView):
+  model = LiteraryFormat
+  template_name = "catalog/genres_list.html"
+  context_object_name = "genres"
+
+
+class BooksListViews(generic.ListView):
+  model = Book
+
+
+class AuthorsListViews(generic.ListView):
+  model = Author

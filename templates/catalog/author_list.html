@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>Lista de Autores</h1>
+{% if author_list %}
+<ul>
+  {% for autor in author_list %}
+  <li>{{ autor.psedonimo }}</li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Não há autores aqui</p>
+{% endif %}
+{% endblock %}
