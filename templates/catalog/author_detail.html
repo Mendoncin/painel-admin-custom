@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{author.psedonimo}}</h1>
+
+<h3>
+  {{author.first_name}}
+  {{author.last_name}}
+</h3>
+
+<h4>
+  {% for book in author.books.all %}
+  {{book.title}}
+  {% endfor %}
+</h4>
+
+{% endblock %}

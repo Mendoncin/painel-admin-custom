@@ -57,3 +57,7 @@ class BookDetailViews(generic.DetailView):
     "book": book
   }
   return render(request, "catalog/book_detail.html", context=context)"""
+
+
+class AuthorDetailView(generic.DetailView):
+  model = Author

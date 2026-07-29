@@ -5,7 +5,7 @@
 {% if author_list %}
 <ul>
   {% for autor in author_list %}
-  <li>{{ autor.psedonimo }}</li>
+  <li><a href="{{ autor.get_absolute_url }}">{{ autor.psedonimo }}</a></li>
   {% endfor %}
 </ul>
 {% else %}

@@ -1,5 +1,5 @@
 from django.urls import path
-from catalog.views import abigail, index, LiteraryFormatsListView, BooksListViews, AuthorsListViews, BookDetailViews
+from catalog.views import abigail, index, LiteraryFormatsListView, BooksListViews, AuthorsListViews, BookDetailViews, AuthorDetailView
 app_name = "catalog"
 
 urlpatterns = [
@@ -9,4 +9,5 @@ urlpatterns = [
     path("livros/", BooksListViews.as_view(), name="lista-de-livros"),
     path("livros/<int:pk>", BookDetailViews.as_view(), name="detalhes-livros"),
     path("autores/", AuthorsListViews.as_view(), name="lista-de-autores"),
+    path("autores/<int:pk>", AuthorDetailView.as_view(), name="detalhes-autores")
 ]

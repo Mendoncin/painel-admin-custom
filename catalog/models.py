@@ -25,6 +25,9 @@ class Author(AbstractUser):
   def __str__(self):
     return f"{self.first_name} {self.last_name}"
 
+  def get_absolute_url(self):
+      return reverse("catalog:detalhes-autores", args=[str(self.id)])
+
 
 class Book(models.Model):
   title = models.CharField(max_length=255)
