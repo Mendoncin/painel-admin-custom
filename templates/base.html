@@ -29,6 +29,9 @@
             <li>Número de formatos Literários: {{num_lit}}</li>
           </ul>
           {% endblock %}
+          {% block pagination %}
+            {% include "includes/pagination.html" %}
+          {% endblock %}
         </div>
       </div>
     </div>
