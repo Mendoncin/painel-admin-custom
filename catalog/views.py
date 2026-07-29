@@ -42,9 +42,12 @@ class AuthorsListViews(generic.ListView):
   model = Author
 
 
-def books_details(request: HttpRequest, pk: int) -> HttpResponse:
+class BookDetailViews(generic.DetailView):
+  model = Book
+
+"""def books_details(request: HttpRequest, pk: int) -> HttpResponse:
   book = Book.objects.get(id=pk)
   context = {
     "book": book
   }
-  return render(request, "catalog/book_detail.html", context=context)
+  return render(request, "catalog/book_detail.html", context=context)"""
