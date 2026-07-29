@@ -28,6 +28,7 @@
             <li>Número de Autores no catálogo: {{num_authors}}</li>
             <li>Número de formatos Literários: {{num_lit}}</li>
           </ul>
+          <p>Você visitou esse site <strong>{{ num_visits }}</strong> time{{num_visits|pluralize}}</p>
           {% endblock %}
           {% block pagination %}
             {% include "includes/pagination.html" %}

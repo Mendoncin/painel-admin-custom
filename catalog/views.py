@@ -19,10 +19,15 @@ def index(request: HttpRequest) -> HttpResponse:
   num_books = Book.objects.count()
   num_author = Author.objects.count()
   num_literary = LiteraryFormat.objects.count()
+
+  num_visits = request.session.get("num_visits", 0)
+  request.session["num_visits"] = num_visits + 1
+
   context = {
     "num_books": num_books,
     "num_authors": num_author,
-    "num_lit": num_literary
+    "num_lit": num_literary,
+    "num_visits": num_visits
   }
   return render(request, "catalog/index.html", context=context)
 
@@ -31,6 +36,7 @@ class LiteraryFormatsListView(generic.ListView):
   model = LiteraryFormat
   template_name = "catalog/genres_list.html"
   context_object_name = "genres"
+  paginate_by = 2
 
 
 class BooksListViews(generic.ListView):
