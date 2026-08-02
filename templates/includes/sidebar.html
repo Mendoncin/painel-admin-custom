@@ -1,4 +1,14 @@
 <ul class="sidebar-nav">
+  {% if user.is_authenticated %}
+    <li>
+      User: {{ user.username }}
+    </li>
+  {% else %}
+    <li>
+      <a href="{% url 'accounts:login' %}">Login</a>
+    </li>
+  {% endif %}
+  <br>
   <li>
     <a href="{% url 'catalog:index' %}">Home</a>
   </li>
