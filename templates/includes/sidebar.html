@@ -21,4 +21,9 @@
   <li>
     <a href="{% url 'catalog:lista-de-generos' %}">Todos generos</a>
   </li>
+
+  {% if user.is_authenticated %}
+  <br>
+    <a href="{% url 'accounts:logout' %}">Logout</a>
+  {% endif %}
 </ul>

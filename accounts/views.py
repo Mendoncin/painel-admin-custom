@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest, HttpResponseRedirect
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
 # Create your views here.
@@ -20,3 +20,8 @@ def login_view(request: HttpRequest) -> HttpResponse:
         "error": "credenciais inválidas"
       }
     return render(request, "accounts/login.html", context= error_context)
+
+
+def logout_view(request: HttpRequest) -> HttpResponse:
+  logout(request)
+  return render(request, "accounts/logout.html")
