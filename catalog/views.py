@@ -3,8 +3,10 @@ from django.http import HttpRequest, HttpResponse
 import datetime
 from .models import Book, Author, LiteraryFormat
 from django.views import generic
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-
+@login_required
 def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
   now = datetime.datetime.now()
   return HttpResponse("<html>"
@@ -15,6 +17,7 @@ def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
                       )
 
 
+@login_required
 def index(request: HttpRequest) -> HttpResponse:
   num_books = Book.objects.count()
   num_author = Author.objects.count()
@@ -32,23 +35,23 @@ def index(request: HttpRequest) -> HttpResponse:
   return render(request, "catalog/index.html", context=context)
 
 
-class LiteraryFormatsListView(generic.ListView):
+class LiteraryFormatsListView(LoginRequiredMixin, generic.ListView):
   model = LiteraryFormat
   template_name = "catalog/genres_list.html"
   context_object_name = "genres"
   paginate_by = 2
 
 
-class BooksListViews(generic.ListView):
+class BooksListViews(LoginRequiredMixin, generic.ListView):
   model = Book
   queryset = Book.objects.select_related("format")
 
 
-class AuthorsListViews(generic.ListView):
+class AuthorsListViews(LoginRequiredMixin, generic.ListView):
   model = Author
 
 
-class BookDetailViews(generic.DetailView):
+class BookDetailViews(LoginRequiredMixin, generic.DetailView):
   model = Book
 
 """def books_details(request: HttpRequest, pk: int) -> HttpResponse:
@@ -59,5 +62,5 @@ class BookDetailViews(generic.DetailView):
   return render(request, "catalog/book_detail.html", context=context)"""
 
 
-class AuthorDetailView(generic.DetailView):
+class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
   model = Author
