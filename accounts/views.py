@@ -15,4 +15,8 @@ def login_view(request: HttpRequest) -> HttpResponse:
     if user:
       login(request, user)
       return HttpResponseRedirect(reverse("catalog:index"))
-    return render(request, "accounts/login.html")
+    else:
+      error_context= {
+        "error": "credenciais inválidas"
+      }
+    return render(request, "accounts/login.html", context= error_context)
