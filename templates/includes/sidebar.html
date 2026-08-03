@@ -5,7 +5,7 @@
     </li>
   {% else %}
     <li>
-      <a href="{% url 'accounts:login' %}">Login</a>
+      <a href="{% url 'login' %}">Login</a>
     </li>
   {% endif %}
   <br>
@@ -24,6 +24,11 @@
 
   {% if user.is_authenticated %}
   <br>
-    <a href="{% url 'accounts:logout' %}">Logout</a>
+    <li>
+      <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+      </form>
+    </li>
   {% endif %}
 </ul>

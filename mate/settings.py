@@ -39,7 +39,6 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "debug_toolbar",
     "catalog",
-    "accounts",
 ]
 
 MIDDLEWARE = [
@@ -123,6 +122,10 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
+
+
+LOGIN_REDIRECT_URL = "/catalog/"
+
 
 AUTH_USER_MODEL = "catalog.Author"
 
