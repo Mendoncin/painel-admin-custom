@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Confirmar Exclusão de Gênero Literário</h1>
+  <p>Tem certeza de que deseja excluir o gênero "{{ object }}"?</p>
+  <p><i>Todos os livros associados a este gênero serão afetados.</i></p>
+  <form method="post">
+    {% csrf_token %}
+    <input class="btn btn-danger" type="submit" value="Excluir">
+    <a class="btn btn-secondary" href="{% url 'catalog:lista-de-generos' %}">Cancelar</a>
+  </form>
+{% endblock %}
