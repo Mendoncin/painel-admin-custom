@@ -41,7 +41,6 @@ class LiteraryFormatsListView(LoginRequiredMixin, generic.ListView):
   model = LiteraryFormat
   template_name = "catalog/genres_list.html"
   context_object_name = "genres"
-  paginate_by = 2
 
 
 class LiteraryFormatsCreateView(LoginRequiredMixin, generic.CreateView):

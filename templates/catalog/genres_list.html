@@ -4,10 +4,24 @@
 <h1>Lista de gêneros <a style="float: right;" href="{% url 'catalog:criar-generos' %}">+</a></h1>
 {% if genres %}
 <ul>
-  {% for genre in genres %}
-  <li>{{genre.name}}</li>
-  {% endfor %}
-</ul>
+  <table class="table">
+    <tr>
+      <th>ID</th>
+      <th>Nome</th>
+      <th>Atualizar</th>
+      <th>Excluir</th>
+    </tr>
+
+    {% for genre in genres %}
+    <tr>
+      <td>{{ genre.id }}</td>
+      <td>{{ genre.name }}</td>
+      <td><a class="btn btn-sm btn-primary" href="{% url 'catalog:atualizar-generos' genre.id %}">Atualizar</a></td>
+      <td><a class="btn btn-sm btn-danger" href="{% url 'catalog:excluir-generos' genre.id %}">Excluir</a></td>
+    </tr>
+    
+    {% endfor %}
+  </table>
 {% else %}
 <p>Não há generos aqui</p>
 {% endif %}
