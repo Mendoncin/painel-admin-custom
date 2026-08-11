@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpRequest, HttpResponse
 import datetime
+
+from django.urls import reverse_lazy
 from .models import Book, Author, LiteraryFormat
 from django.views import generic
 from django.contrib.auth.decorators import login_required
@@ -40,6 +42,13 @@ class LiteraryFormatsListView(LoginRequiredMixin, generic.ListView):
   template_name = "catalog/genres_list.html"
   context_object_name = "genres"
   paginate_by = 2
+
+
+class LiteraryFormatsCreateView(LoginRequiredMixin, generic.CreateView):
+  model = LiteraryFormat
+  fields = "__all__"
+  template_name = "catalog/genres_form.html"
+  success_url = reverse_lazy("catalog:lista-de-generos")
 
 
 class BooksListViews(LoginRequiredMixin, generic.ListView):
