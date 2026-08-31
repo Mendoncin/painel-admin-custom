@@ -2,11 +2,10 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-  <h1>{{ object|yesno:"Atualizar,Adicionar" }} Gênero Literário</h1>
+  <h1>Criar Autor</h1>
   <form method="post" novalidate>
     {% csrf_token %}
     {{ form|crispy }}
     <input class="btn btn-primary" type="submit" value="Salvar">
   </form>
 {% endblock %}
-    

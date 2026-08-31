@@ -7,6 +7,7 @@ from .models import Book, Author, LiteraryFormat
 from django.views import generic
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import AuthorCreationForm, BookForm, BookSearchForm
 
 @login_required
 def abigail(request: HttpRequest, unique_number: int) -> HttpResponse:
@@ -66,20 +67,49 @@ class BooksListViews(LoginRequiredMixin, generic.ListView):
   model = Book
   queryset = Book.objects.select_related("format")
 
+  def get_context_data(self, **kwargs):
+    context = super().get_context_data(**kwargs)
+    title = self.request.GET.get("title", "")
+    context["title"] = title
+    context["search_form"] = BookSearchForm(
+      initial={"title": title}
+    )
+    return context
+
+  def get_queryset(self):
+    form = BookSearchForm(self.request.GET)
+    if form.is_valid():
+      return self.queryset.filter(title__icontains=form.cleaned_data.get("title"))
+    return self.queryset
+
 
 class AuthorsListViews(LoginRequiredMixin, generic.ListView):
   model = Author
 
 
+class AuthorCreateView(LoginRequiredMixin, generic.CreateView):
+  model = Author
+  form_class = AuthorCreationForm
+  template_name = "catalog/author_form.html"
+  success_url = reverse_lazy("catalog:lista-de-autores")
+
+
 class BookDetailViews(LoginRequiredMixin, generic.DetailView):
   model = Book
 
-"""def books_details(request: HttpRequest, pk: int) -> HttpResponse:
-  book = Book.objects.get(id=pk)
-  context = {
-    "book": book
-  }
-  return render(request, "catalog/book_detail.html", context=context)"""
+
+class BookCreateView(LoginRequiredMixin, generic.CreateView):
+  model = Book
+  form_class = BookForm
+  template_name = "catalog/book_form.html"
+  success_url = reverse_lazy("catalog:lista-de-livros")
+
+
+class BookUpdateView(LoginRequiredMixin, generic.UpdateView):
+  model = Book
+  form_class = BookForm
+  template_name = "catalog/book_form.html"
+  success_url = reverse_lazy("catalog:lista-de-livros")
 
 
 class AuthorDetailView(LoginRequiredMixin, generic.DetailView):
