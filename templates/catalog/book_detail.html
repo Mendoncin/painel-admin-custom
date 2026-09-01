@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>{{ book.title }} <a style="float: right;" href="{% url 'catalog:atualizar-livros' pk=book.pk %}">Editar</a></h1>
+<h1>{{ book.title }} <a class="btn btn-secondary" style="float: right;" href="{% url 'catalog:atualizar-livros' pk=book.pk %}">Editar</a></h1>
 
 <p><strong>Preço: </strong>{{ book.price }}</p>
 <p><strong>Gênero: </strong>{{ book.format }}</p>

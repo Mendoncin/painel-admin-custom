@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h1>Lista de gêneros <a style="float: right;" href="{% url 'catalog:criar-generos' %}">+</a></h1>
+<h1>Lista de gêneros <a class="btn btn-primary" style="float: right;" href="{% url 'catalog:criar-generos' %}">+</a></h1>
 {% if genres %}
 <ul>
   <table class="table">

@@ -2,17 +2,33 @@
 {% load crispy_forms_filters %}
 
 {% block content %}
-<h1>Lista de Livros <a style="float: right;" href="{% url 'catalog:criar-livros' %}">+</a></h1>
+<h1>Lista de Livros <a class="btn btn-primary" style="float: right;" href="{% url 'catalog:criar-livros' %}">+</a></h1>
 <form method="get" action="" class="form-inline">
   {{ search_form|crispy }}
   <input type="submit" value="🔎" class="btn btn-secondary">
 </form>
 {% if book_list %}
-<ul>
-  {% for book in book_list %}
-  <li><a href="{{ book.get_absolute_url }}">{{book.title}} ({{book.price}} {{book.format}})</a></li>
-  {% endfor %}
-</ul>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Título</th>
+      <th>Preço</th>
+      <th>Formato</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for book in book_list %}
+    <tr>
+      <td><a href="{{ book.get_absolute_url }}">{{ book.id }}</a></td>
+      <td>{{ book.title }}</td>
+      <td>{{ book.price }}</td>
+      <td>{{ book.format }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
 {% else %}
 <p>Não há livros aqui</p>
 {% endif %}

@@ -1,30 +1,30 @@
-<ul class="sidebar-nav">
+<ul class="sidebar-nav list-group">
   {% if user.is_authenticated %}
-    <li>
+     <li class="list-group-item">
       User: {{ user.username }}
     </li>
   {% else %}
-    <li>
+     <li class="list-group-item">
       <a href="{% url 'login' %}">Login</a>
     </li>
   {% endif %}
   <br>
-  <li>
+   <li class="list-group-item">
     <a href="{% url 'catalog:index' %}">Home</a>
   </li>
-  <li>
+   <li class="list-group-item">
     <a href="{% url 'catalog:lista-de-autores' %}">Todos autores</a>
   </li>
-  <li>
+   <li class="list-group-item">
     <a href="{% url 'catalog:lista-de-livros' %}">Todos livros</a>
   </li>
-  <li>
+   <li class="list-group-item">
     <a href="{% url 'catalog:lista-de-generos' %}">Todos generos</a>
   </li>
 
   {% if user.is_authenticated %}
   <br>
-    <li>
+     <li class="list-group-item">
       <form action="{% url 'logout' %}" method="post">
         {% csrf_token %}
         <button type="submit">Logout</button>
